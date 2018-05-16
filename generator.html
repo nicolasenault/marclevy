@@ -1,0 +1,143 @@
+
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:b' rel='stylesheet'>
+	
+	<style>
+		.titre {
+		position:absolute;
+		bottom:0;
+		margin-bottom:630px;
+		text-align:center;
+		width:500px;
+		color:#fff;
+		font-size:60px;
+		font-family:Muli;
+		font-weight: 800;
+		}
+		.titrehaut {
+		position:absolute;
+		bottom:0;
+		margin-bottom:690px;
+		text-align:center;
+		width:500px;
+		color:#fff;
+		font-size:60px;
+		font-family:Muli;
+		font-weight: 800;
+		}
+		.titrelong {
+		position:absolute;
+		bottom:0;
+		margin-bottom:600px;
+		text-align:center;
+		width:500px;
+		color:#fff;
+		font-size:60px;
+		font-family:Muli;
+		font-weight: 800;
+		}
+		.quatrecouv {
+		position:absolute;
+		bottom:0;
+		margin-left:15px;
+		margin-bottom:140px;
+		text-align:left;
+		width:450px;
+		background: #ce1719;
+		padding:10px;
+		color:#fff;
+		font-weight:bold;
+		font-size:16px;
+		font-family:arial;
+		}
+		.marclevy {
+		color:#fff;
+		font-size:50px;
+		font-family:Muli;
+		background:#ce1719;
+		width:500px;
+		height:70px;
+		text-align:center;
+		padding-top:30px;
+		margin:0px;
+		}
+		#bg {
+		opacity: 0.8;
+		}
+		.partie {
+		font-size:30px;
+		}
+	</style>
+	
+</head>
+
+<body>
+	<div id="couv" onclick="generatefilteredMessage('');generateTitle('')">
+		<p class="marclevy">Marc Levy</p>
+		<!-- <img id="bg" class="bg" src="test_marc.png" /> -->
+		<div id="soustitre"></div>
+	</div>
+
+		<script>
+		var generatedTitle = '';
+		var pageURL = 'https://www.francetvinfo.fr/politique/francois-hollande/hollande-bashing-creez-la-une-des-hebdomadaires-de-la-semaine-prochaine_738199.html';
+		var params = getQueryParams(document.location.search);
+
+		var titre = [
+						'<span class="titre">Et si c\'était toi ?</span><span class="quatrecouv">Ethan est un architecte millionnaire qui s\'ennuie dans son triplex à Manhattan. Océane est une richissime galeriste qui dépérit dans son hôtel particulier à Montmartre. Un soir, en vacances à Miami, ils se retrouvent obligés de partager le même Uber. Tout les oppose, mais la vie va les réunir. Pourront-ils accepter leur bonheur ?<br /><br />Avec cette histoire d\'amour subtile, Marc Levy nous fait voyager des quartiers défavorisés de New York aux bidonvilles français.</span><img src="https://i.imgur.com/MfShCrI.png" />',
+						'<span class="titre">Reviens-moi...</span><span class="quatrecouv">A quoi seriez-vous prêt pour ressusciter un être cher ? Pour retrouver son père mort le jour de sa naissance, Brianna, top model de 23 ans, va conclure un incroyable pacte avec le diable. Va-t-elle le regretter ?<br /><br />Marc Levy se renouvelle totalement et explore avec délicatesse la relation père-fille.</span><img src="https://i.imgur.com/oeW3jqc.png" />',
+						'<span class="titrelong">Ce qu\'on aurait pu être<br /><span class="partie">(partie 1)</span></span><span class="quatrecouv">Kristen et Bradley sont meilleurs amis depuis toujours. Mais Bradley, archéologue, est muté au Caire, alors que Kristen doit se marier à San Francisco. Grâce à Snapchat, ils s\'écriront de longues missives qui les aideront à réaliser que lorsqu\'un seul être vous manque, tout est dépeuplé.<br /><br /><i>"La plus belle histoire d\'amour depuis Belle du Seigneur."</i> - Victoria</span><img src="https://i.imgur.com/rzyEDKV.png" />',
+						'<span class="titrelong">Ce qu\'on aurait pu être<br /><span class="partie">(partie 2)</span></span><span class="quatrecouv">Après avoir abandonné son fiancé devant l\'autel, Kristen se console dans les bras de Bradley, son meilleur ami depuis toujours. Leur amitié survivra-t-elle à leur histoire d\'amour ? Après une succession d\'aventures plus étonnantes les unes que les autres, les deux amis découvriront qu\'aimer, ce n\'est pas se regarder l\'un l\'autre mais regarder ensemble dans la même direction.<br /><br />Avec ce récit moderne et poignant, Marc Levy prouve encore une fois que personne ne sonde l\'âme humaine aussi bien que lui.</span><img src="https://i.imgur.com/0KxBvK9.png" />',
+						'<span class="titre">Seras-tu là ?</span><span class="quatrecouv">Dotée d\'un irrésistible appétit de vivre, la jeune et jolie Mia vient perturber le quotidien de Vladimir, richissime oligarque russe. Les choses se compliquent lorsque Ivana, l\'ex-épouse de Vladimir qui a mystérieusement disparu deux ans auparavant, vient hanter Mia. Un roman sur la mort... parce qu\'après, plus rien n\'est pareil.<br /><br />Touchant, mystérieux et plein d\'humour, ce conte hors du temps, au dénouement inoubliable, vous séduira par son écriture enlevée.</span><img src="https://i.imgur.com/pLcSRK9.png" />',
+						'<span class="titre">L\'Etrangère</span><span class="quatrecouv">Sans crier gare, Katherine, riche héritière d\'un puissant industriel londonien, renonce à sa fortune pour partir en mission humanitaire en Afrique. L\'occasion pour elle de devenir enfin celle qu\'elle a toujours rêvé d\'être. Mais tout ne se passe pas comme prévu... Pour vaincre les épreuves qui s\'annoncent, elle devra ouvrir son cœur à l\'inconnu.<br /><br />Dans cette formidable ode à la diversité, Marc Levy livre une leçon de vie : on est toujours l\'étranger de quelqu\'un.</span><img src="https://i.imgur.com/JYY4iir.png" />',
+						'<span class="titre">Six ans plus tard...</span><span class="quatrecouv">Elle est critique gastronomique au New York Times. Il est apiculteur en Californie. C\'est au détour d\'une dégustation de miel bio que le destin les réunit. Mais, six ans plus tard, la vie va les éloigner l\'un de l\'autre. Seront-ils prêts à tout pour sauver leur amour ? Des personnages qui vous collent à la peau, une trame originale, un suspense haletant...<br /><br />Pour son troisième roman de l\'année, Marc Levy réunit tout ce qui a fait son succès.</span><img src="https://i.imgur.com/2y5oHkf.png" />',
+						'<span class="titrehaut">Souviens-toi...</span><span class="quatrecouv">Où se situe notre mémoire ? Peut-on se rappeler ce qu\'on n\'a pas vécu ? Mark se réveille après 14 années dans le coma. Il ne se souvient plus de sa femme Allison, mais est persuadé de connaître Christopher, qui partage sa chambre à l\'hôpital. Pourtant, c\'est la première fois qu\'ils se voient. Ensemble, ils se lancent dans le plus étrange des voyages pour découvrir leur passé commun.<br /><br />Du marché de Camden aux rives du Nil, Marc Levy cisèle une histoire d\'amour et d\'amitié hors du temps, au dénouement inoubliable.</span><img src="https://i.imgur.com/Nvm1mtt.png" />',
+						'<span class="titre">100 jours<br />avec toi</span><span class="quatrecouv">Caleb et Savannah sont ennemis jurés, mais se retrouvent à devoir partager un appartement. Ils avaient tout prévu... sauf de tomber amoureux. Malheureusement, leurs familles vont chercher à les séparer.<br /><br />Marc Levy nous entraîne dans une histoire d\'amour complètement imprévisible, adaptée au cinéma avec Katherine Heigl et Joseph Gordon-Levitt.</span><img src="https://i.imgur.com/Hy4cQ4G.png" />',
+						'<span class="titre">A tout jamais</span><span class="quatrecouv">Venise, été 2017. Ricardo avait promis à Loretta qu\'il serait toujours là pour elle. Il ne pouvait pas se douter que tenir parole allait profondément bouleverser son existence... S\'il pouvait revenir en arrière, lui ferait-il la même promesse ? Il va devoir prendre la décision la plus difficile de sa vie.<br /><br />Dans ce récit extraordinaire, Marc Levy réaffirme notre besoin inconditionnel d\'être aimé et nous fait découvrir un pan méconnu de l\'histoire moderne italienne.</span><img src="https://i.imgur.com/vpMRIYU.png" />',
+						'<span class="titre">Une vie<br />sans toi...</span><span class="quatrecouv">Avril 2017. Aiko vit à Tokyo, Colette à Paris. Elles ne se connaissent pas, et pourtant elles sont sœurs jumelles. Leur rencontre au festival Coachella va transformer leurs vies. Pourquoi ont-elles été séparées à la naissance ? Qui sont leurs véritables parents ? Les deux sœurs s\'embarquent dans un improbable voyage pour découvrir leurs origines.<br /><br />Une fable époustouflante, tout en nuances, sur l\'importance de la famille.</span><img src="https://i.imgur.com/1Cld5gj.png" />',
+						'<span class="titre">Les Premiers Hommes</span><span class="quatrecouv">Lors de fouilles en Inde, Elijah, archéologue passionné, fait une découverte qui va révolutionner tout ce qu\'on pense connaître des origines de l\'espèce humaine. Mais lorsqu\'il tente de prévenir le monde, il est enlevé et fait prisonnier par de mystérieux hommes au langage inconnu. Qui sont-ils ? Pourquoi veulent-ils faire taire Elijah ? Dans sa quête de la vérité, l\'archéologue sera aidé par son ex-amante, Carla. Ensemble, ils découvriront que l\'humanité pourrait bien être née sur une autre planète...<br /><br />Ce grand roman d\'aventures, qui réinvente le genre, a été adapté au cinéma par le producteur et réalisateur français Luc Besson.</span><img src="https://i.imgur.com/x88e8x1.png" />',
+						'<span class="titre">M\'écriras-tu ?</span><span class="quatrecouv">Ella, trentenaire new-yorkaise, rédige une lettre d\'adieu à l\'homme qu\'elle a tant aimé et qui l\'a quittée. Mais c\'est Vivian, jeune fille pauvre de La Nouvelle-Orléans, qui la reçoit... trente ans avant même qu\'elle ait été écrite. Ella et Vivian vont alors entretenir une correspondance entre leurs deux époques, et se lier d\'amitié. Mais elles découvriront bientôt qu\'on ne joue pas impunément avec les couloirs du temps...<br /><br />Personnages hauts en couleur, suspense de chaque instant : avec M\'écriras-tu ?, Marc Levy signe l\'un de ses romans les plus aboutis.</span><img src="https://i.imgur.com/UQg6OnN.png" />',
+						'<span class="titre">L\'Homme<br/>à abattre</span><span class="quatrecouv">Nul ne sait ce que le passé nous réserve. Éploré après la mort de sa femme 18 ans auparavant, Fritz, peintre à succès dans le Berlin des années 1950, va faire la rencontre d\'un étrange médecin. Ce dernier lui propose de remonter dans le temps pour sauver l\'amour de sa vie... en échange d\'un incroyable service : empêcher Adolf Hitler d\'accéder au pouvoir. Mais ce que Fritz ignore, c\'est qu\'en tuant le futur führer, il pourrait effacer sa propre existence...<br /><br />Porté par une intrigue jamais vue, ce livre au suspense magistral vous happe dès les premières pages.</span><img src="https://i.imgur.com/DZSUGIS.png" />',
+						'<span class="titrehaut">La Dernière Fois</span><span class="quatrecouv">Trente ans après l\'avoir perdu de vue, John recroise son meilleur ami d\'enfance, Will, là où ils s\'étaient quittés. Ils décident de rattraper le temps perdu et partent en voyage ensemble. Mais cette coïncidence n\'est-elle vraiment que le fruit du hasard ? Bientôt, John va découvrir le terrible passé de Will.<br /><br />Marc Levy signe une délicate et touchante histoire d\'amitié au masculin.</span><img src="https://i.imgur.com/Uqjh4n4.png" />',
+						'<span class="titrehaut">Le Jour d\'avant</span><span class="quatrecouv">Ce devait être le plus beau jour de sa vie. Mais alors qu\'Anna doit se marier, tout part à vau-l\'eau... Au lendemain de cette journée cauchemardesque, la jeune femme réalise avec stupeur qu\'elle est à nouveau à la veille de son mariage. L\'occasion pour elle de corriger ce qui a mal tourné... ou de ne faire qu\'empirer les choses.<br /><br /><i>"Des questionnements existentiels dans lesquels chacun se retrouve."</i> - La Revue psycho</span><img src="https://i.imgur.com/7CThiHj.png" />',
+						'<span class="titrehaut">De l\'autre côté</span><span class="quatrecouv">A la fin des temps, anges et démons s\'affrontent pour le contrôle éternel des âmes humaines. Mais si le camp du Bien n\'était pas celui que l\'on croit ? Ici, le Paradis a un goût d\'Enfer.<br /><br />Avec ce roman complexe, Marc Levy esquisse une vision nuancée et pluraliste de notre monde.</span><img src="https://i.imgur.com/0T6NUKk.png" />',
+						'<span class="titre">L\'Éternité dans tes bras...</span><span class="quatrecouv">Il a 50 ans. Elle en a 35. Il est anglais. Elle est américaine. Il cherche l\'amour. Elle aussi. Ils n\'auraient jamais dû se rencontrer, mais ils vont vivre une passion torride le temps d\'un week-end. Au soir du troisième jour, l\'un des deux mourra. Pourtant, leur histoire ne s\'arrêtera pas là...<br /><br />Une histoire d\'amour puissante et haletante, incarnée au cinéma par Hugh Grant et Jennifer Aniston.</span><img src="https://i.imgur.com/M5wzNl5.png" />',
+						'<span class="titre">Pardonne-moi</span><span class="quatrecouv">La vie est-elle trop courte pour poursuivre un amour impossible ? Sarah et Jonathan ont passé leur enfance à jouer ensemble à San Francisco. Mais après la mort de la mère de Sarah et le déménagement de la petite fille, les enfants se perdent de vue. Vingt ans après, Jonathan est devenu un cost killer recherché, démantelant des entreprises à tour de bras. Sarah est une travailleuse sociale hors pair, qui voue son énergie à reconstruire les vies que Jonathan a brisées. Ils se retrouvent par hasard et tombent éperdument amoureux l\'un de l\'autre. Avant de réaliser que tout les oppose...<br /><br />Avec ce récit intense et captivant, Marc Levy montre une nouvelle fois que les routes les plus difficiles mènent aux plus belles destinations.</span><img src="https://i.imgur.com/iMkD4Ru.png" />',
+						'<span class="titre">La Cible</span><span class="quatrecouv">Quand une vie ordinaire devient extraordinaire... Aiden est un célèbre architecte qui vit dans le Marais, à Paris. Alors qu\'il cherche à retrouver sa mère, dont il a été séparé à la naissance, il tombe sur un mystérieux manuscrit qu\'elle a rédigé, et qui pourrait provoquer une troisième guerre mondiale. Aidé dans son aventure par sa voisine, avec qui il finit par entamer une liaison brûlante, il se retrouve pourchassé par une société secrète. Mais le fantôme de sa femme décédée lui rend visite pour l\'avertir que sa voisine n\'est en fait que la dirigeante de l\'organisation qui cherche à le tuer, afin de l\'empêcher de découvrir la vérité sur sa mère disparue...<br /><br />Une fable du quotidien, dans laquelle tous les lecteurs se reconnaîtront.</span><img src="https://i.imgur.com/grESvov.png" />',
+						];
+
+		function getQueryParams(qs) {
+			qs = qs.split("+").join(" ");
+
+			var params = {}, tokens,
+				re = /[?&]?([^=]+)=([^&]*)/g;
+
+			while (tokens = re.exec(qs)) {
+				params[decodeURIComponent(tokens[1])]
+					= decodeURIComponent(tokens[2]);
+			}
+
+			return params;
+		}
+
+		function generatefilteredMessage (msg) {
+
+			generateTitle (params.subtitle !== undefined ? params.subtitle : '');
+			/*generateBG ();*/
+		}
+		/*function generateBG () {
+			document.getElementById ('bg').src = image[Math.floor(Math.random() * image.length)];
+		}*/
+
+		function generateTitle (msg) {
+			generatedTitle = msg !== '' ? msg.replace(/;/g, ' ') : titre[Math.floor(Math.random() * titre.length)];
+			document.getElementById ('soustitre').innerHTML = generatedTitle;
+
+		};
+		generatefilteredMessage(params.title !== undefined ? params.title : '');
+	</script>
+</body>
+</html>
